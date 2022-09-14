@@ -1,0 +1,76 @@
+<!--
+ * @Author: lujiafeng
+ * @Date: 2022-08-13 20:30:36
+ * @LastEditTime: 2022-09-06 13:37:03
+ * @LastEditors: lujiafeng
+ * @Description: 
+ * @FilePath: \debug-anything\react-test\public\event.html
+ * 可以输入预定的版权声明、个性签名、空行等
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">12321312</div>
+  <script>
+    // 代数效应
+    // function wrapPromise (promise) {
+    //   let status = "padding";
+    //   let result;
+    //   let suspender = promise.then((res) => {
+    //     status = "success";
+    //     result = res;
+    //   }, (err) => {
+    //     status = "error";
+    //     result = err;
+    //   })
+    //   return {
+    //     read () {
+    //       if (status === "padding") {
+    //         throw suspender;
+    //       } else if (status === "success") {
+    //         throw result;
+    //       } else if (status === "error") {
+    //         return result;
+    //       }
+    //     }
+    //   }
+    // }
+
+    // let test = new Promise((resolve, reject) => {
+    //   setTimeout(() => {
+    //     resolve(true)
+    //   }, 3000);
+    // })
+
+    // function fetchSomething () {
+    //   return wrapPromise(test)
+    // }
+    // let data = fetchSomething()
+    // console.log(data.read())
+    function callCallback () {
+      console.log(1111111111)
+    }
+    const root = document.querySelector("#root");
+    root.addEventListener("click", () => {
+      testEvent()
+    })
+    function testEvent () {
+      const fakeNode = document.createElement("react");
+      const evt = document.createEvent('Event');
+      fakeNode.addEventListener("test", callCallback, false);
+      evt.initEvent("test", false, false);
+      fakeNode.dispatchEvent(evt)
+    }
+
+  </script>
+</body>
+
+</html>
